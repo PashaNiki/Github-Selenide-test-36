@@ -47,6 +47,5 @@ public class softAssertionsTest {
                 text("        $(\"#first\").should(visible).click();"),
                 text("        $(\"#second\").should(visible).click();")
                 );
-        sleep(4000);
     }
 }
