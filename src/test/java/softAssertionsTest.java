@@ -36,16 +36,17 @@ public class softAssertionsTest {
                 .scrollIntoView(true)
                 .shouldBe(visible);
         // проверьте что внутри есть ПРИМЕР кода для JUnit5
-        $("#gollum-markdown-content").shouldHave(
-                text("Using JUnit5 extend test class"),
-                text("@ExtendWith({SoftAssertsExtension.class})"),
-                text("class Tests {"),
-                text("    @Test"),
-                text("    void test() {"),
-                text("        Configuration.assertionMode = SOFT;"),
-                text("        open(\"page.html\");"),
-                text("        $(\"#first\").should(visible).click();"),
-                text("        $(\"#second\").should(visible).click();")
-                );
+        String expectedSnippet = """
+            @ExtendWith({SoftAssertsExtension.class})
+            class Tests {
+                @Test
+                void test() {
+                    Configuration.assertionMode = SOFT;
+                    open("page.html");
+                    $("#first").should(visible).click();
+                    $("#second").should(visible).click();
+                }
+            }""";
+        $("#gollum-markdown-content").shouldHave(text(expectedSnippet));
     }
 }
